@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All contests</title>
+</head>
+<body>
+
+<table>
+
+    <tr>
+        <td>Sport</td>
+        <td>Site</td>
+        <td>Contest</td>
+        <td>Buy-In</td>
+        <td>Payout</td>
+        <td>Current Entries</td>
+        <td>Sizes</td>
+    </tr>
+{% for contest in contests %}
+    <tr>
+        <td>{{ contest.sport }}</td>
+        <td>{{ contest.site }}</td>
+        <td>{{ contest.title }}</td>
+        <td>{{ contest.buyin }}</td>
+        <td>{{ contest.payout }}</td>
+        <td>{{ contest.entries }}</td>
+        <td>{{ contest.size }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+</body>
+</html>

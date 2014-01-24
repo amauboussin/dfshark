@@ -1,0 +1,10 @@
+#LWP-Cookies-2.0
+Set-Cookie3: PP_FIRST_HTTP_REFERER=none; path="/"; domain=".fanduel.com"; path_spec; domain_dot; expires="2015-12-22 18:32:33Z"; version=0
+Set-Cookie3: VISITOR_KEY=722f0431a4b192635f421ee8942257b0; path="/"; domain=".fanduel.com"; path_spec; domain_dot; expires="2023-12-20 18:32:33Z"; version=0
+Set-Cookie3: VSEQ=1; path="/"; domain=".fanduel.com"; path_spec; domain_dot; expires="2023-12-20 18:32:33Z"; version=0
+Set-Cookie3: auto_user_id2=410966; path="/"; domain=".fanduel.com"; path_spec; domain_dot; expires="2014-03-22 18:32:34Z"; version=0
+Set-Cookie3: cookie_id=V640YJ1UHFOLXKJC9EQ2; path="/"; domain=".fanduel.com"; path_spec; domain_dot; expires="2409-10-03 17:25:50Z"; version=0
+Set-Cookie3: password_encrypted="yRNy2ZyAdiwv4edK3iWiEA%3D%3D"; path="/"; domain=".fanduel.com"; path_spec; domain_dot; expires="2014-03-22 18:32:34Z"; version=0
+Set-Cookie3: sup=MM; path="/"; domain=".fanduel.com"; path_spec; domain_dot; expires="2023-12-20 18:32:34Z"; version=0
+Set-Cookie3: tracking_code=DIRECT; path="/"; domain=".fanduel.com"; path_spec; domain_dot; expires="2063-12-10 18:32:33Z"; version=0
+Set-Cookie3: user_login_timestamp="2013-12-22+10%3A32%3A34"; path="/"; domain=".fanduel.com"; path_spec; domain_dot; expires="2014-03-22 18:32:34Z"; version=0
