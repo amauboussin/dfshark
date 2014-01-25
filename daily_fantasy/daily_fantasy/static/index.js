@@ -2,16 +2,29 @@ var dataView;
 var grid;
 var contests = [];
 var data = [];
-var columns = [
+
 //  {id: "sel", name: "#", field: "num", behavior: "select", cssClass: "cell-selection", width: 40, cannotTriggerInsert: true, resizable: false, selectable: false },
+
+
+  var titleFormatter = function ( row, cell, value, columnDef, dataContext ) {
+        return '<a href="#/Link/' + dataContext['id'] + '">' + value + '</a>';
+    };
+
+  var joinFormatter = function ( row, cell, value, columnDef, dataContext ) {
+        return '<a href="' + value + '">' + "Join!" + '</a>';
+    };
+
+var columns = [
 
   {id: "sport", name: "Sport", field: "sport", width: 120, minWidth: 120, cssClass: "cell-title", sortable: true},
   {id: "site", name: "Site", field: "site", width: 120, minWidth: 120, cssClass: "cell-title", sortable: true},
-  {id: "title", name: "Title", field: "title", width: 120, minWidth: 120, cssClass: "cell-title", sortable: true},
+  {id: "title", name: "Title", field: "title", width: 300, minWidth: 120, cssClass: "cell-title", sortable: true, formatter: titleFormatter},
   {id: "buyin", name: "Buy-In", field: "buyin", sortable: true},
   {id: "payout", name: "Payout", field: "payout", sortable: true},
   {id: "entries", name: "Entries", field: "entries", sortable: true},
-  {id: "size", name: "Size", field: "size", sortable: true}
+  {id: "size", name: "Size", field: "size", sortable: true},
+  {id: "url", name: "Join", field: "url", sortable: false, formatter: joinFormatter}
+
 //  {id: "start", name: "Start", field: "start", minWidth: 60, sortable: true}
 ];
 
@@ -43,7 +56,8 @@ function myFilter(item, args) {
     return false;
   }
 
-  if (args.searchString != "" && item["title"].indexOf(args.searchString) == -1) {
+  if (args.searchString != "" &&
+      item["title"].toLowerCase().indexOf(args.searchString.toLowerCase()) == -1) {
     return false;
   }
 
@@ -56,7 +70,13 @@ function percentCompleteSort(a, b) {
 
 function comparer(a, b) {
   var x = a[sortcol], y = b[sortcol];
-  return (x == y ? 0 : (x > y ? 1 : -1));
+  var numerical = ["buyin", "payout"]
+  if (numerical.indexOf(sortcol) > -1) {
+      return (x == y ? 0 : (parseFloat(x) > parseFloat(y) ? 1 : -1));
+  }
+  else{
+      return (x == y ? 0 : (x > y ? 1 : -1));
+  }
 }
 
 function toggleFilterRow() {
@@ -109,11 +129,12 @@ $(function () {
     data[i]["payout"] = contests[i]["payout"];
     data[i]["entries"] = contests[i]["entries"];
     data[i]["size"] = contests[i]["size"];
+    data[i]["url"] = contests[i]["url"];
   }
 
   dataView = new Slick.Data.DataView({ inlineFilters: true });
   grid = new Slick.Grid("#myGrid", dataView, columns, options);
-  grid.setSelectionModel(new Slick.RowSelectionModel());
+  //grid.setSelectionModel(new Slick.RowSelectionModel());
 
   var pager = new Slick.Controls.Pager(dataView, grid, $("#pager"));
   var columnpicker = new Slick.Controls.ColumnPicker(columns, grid, options);
@@ -153,7 +174,7 @@ $(function () {
     sortdir = args.sortAsc ? 1 : -1;
     sortcol = args.sortCol.field;
 
-    if ($.browser.msie && $.browser.version <= 8) {
+    if ( ($.browser.msie && $.browser.version <= 8) ) {
       // using temporary Object.prototype.toString override
       // more limited and does lexicographic sort only by default, but can be much faster
 
@@ -169,6 +190,7 @@ $(function () {
       };
 
       // use numeric sort of % and lexicographic for everything else
+
       dataView.fastSort((sortcol == "percentComplete") ? percentCompleteValueFn : sortcol, args.sortAsc);
     } else {
       // using native sort with comparer
@@ -263,7 +285,7 @@ $(function () {
 
   // if you don't want the items that are not visible (due to being filtered out
   // or being on a different page) to stay selected, pass 'false' to the second arg
-  dataView.syncGridSelection(grid, false);
+  //dataView.syncGridSelection(grid, false);
 
   $("#gridContainer").resizable();
 })

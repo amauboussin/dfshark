@@ -31,6 +31,9 @@ from datetime import datetime
 # 	def __str__(self):
 # 		return self.__repr__()
 
+
+cookie_path = '/Users/Andrew/Desktop/fs/DailyFantasyAggregate/daily_fantasy/daily_fantasy/static/'
+
 class Scraper(object):
 
 	def __init__(self, browser_needed = True):
@@ -52,7 +55,7 @@ class Scraper(object):
 class FTDScraper(Scraper):
 	def __init__(self):
 		super(FTDScraper, self).__init__()
-		self.cj.load('/Users/Andrew/Desktop/fs/daily_fantasy/daily_fantasy/static/ftd_cookie.txt', ignore_discard=False, ignore_expires=False)
+		self.cj.load(cookie_path + 'ftd_cookie.txt', ignore_discard=False, ignore_expires=False)
 		self.url = 'https://fanthrowdown.com/lobby'
 
 
@@ -111,7 +114,7 @@ class FanduelScraper(Scraper):
 
 	def __init__(self):
 		super(FanduelScraper, self).__init__()
-		self.cj.load('/Users/Andrew/Desktop/fs/daily_fantasy/daily_fantasy/static/fd_cookie.txt', ignore_discard=False, ignore_expires=False)
+		self.cj.load(cookie_path + 'fd_cookie.txt', ignore_discard=False, ignore_expires=False)
 		self.url = 'https://www.fanduel.com/p/Home'
 
 
@@ -161,13 +164,12 @@ class FanduelScraper(Scraper):
 		wfile.write(response.read())
 		wfile.close()
 
-		self.cj.save('/Users/Andrew/Desktop/fs/daily_fantasy/daily_fantasy/static/fd_cookie.txt', ignore_discard=False, ignore_expires=False)
+		self.cj.save(cookie_path + 'fd_cookie.txt', ignore_discard=False, ignore_expires=False)
 
 class DraftKingsScraper(Scraper):
 
 	def __init__(self):
 		super(DraftKingsScraper, self).__init__(browser_needed = False)
-
 
 	def find_between(self, s, first, last):
 		start = s.index( first ) + len( first )
