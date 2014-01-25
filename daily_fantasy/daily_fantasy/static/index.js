@@ -7,34 +7,36 @@ var data = [];
 
 
   var titleFormatter = function ( row, cell, value, columnDef, dataContext ) {
-        return '<a href="#/Link/' + dataContext['id'] + '">' + value + '</a>';
+        return '<a href=' + dataContext['url'] + ' target="_blank" >' + value + '</a>';
     };
 
   var joinFormatter = function ( row, cell, value, columnDef, dataContext ) {
-        return '<a href="' + value + '">' + "Join!" + '</a>';
+        return '<a class = "join" href="' + value + '" target="_blank">' + "Join!" + '</a>';
     };
 
 var columns = [
 
-  {id: "sport", name: "Sport", field: "sport", width: 120, minWidth: 120, cssClass: "cell-title", sortable: true},
-  {id: "site", name: "Site", field: "site", width: 120, minWidth: 120, cssClass: "cell-title", sortable: true},
-  {id: "title", name: "Title", field: "title", width: 300, minWidth: 120, cssClass: "cell-title", sortable: true, formatter: titleFormatter},
-  {id: "buyin", name: "Buy-In", field: "buyin", sortable: true},
-  {id: "payout", name: "Payout", field: "payout", sortable: true},
-  {id: "entries", name: "Entries", field: "entries", sortable: true},
-  {id: "size", name: "Size", field: "size", sortable: true},
-  {id: "url", name: "Join", field: "url", sortable: false, formatter: joinFormatter}
+  {id: "sport", name: "Sport", field: "sport", cssClass: "cell-title", sortable: true},
+  {id: "site", name: "Site", field: "site",  cssClass: "cell-title", sortable: true},
+  {id: "title", name: "Title", field: "title", width: 300,  cssClass: "cell-title", sortable: true, formatter: titleFormatter},
+  {id: "buyin", name: "Buy-In", field: "buyin",  sortable: true},
+  {id: "payout", name: "Payout", field: "payout",  sortable: true},
+  {id: "entries", name: "Entries", field: "entries",  sortable: true},
+  {id: "size", name: "Size", field: "size",  sortable: true},
+  {id: "url", name: "Join", field: "url", width: 60, sortable: false, formatter: joinFormatter}
 
 //  {id: "start", name: "Start", field: "start", minWidth: 60, sortable: true}
 ];
 
 var options = {
-  editable: true,
-  enableAddRow: true,
-  enableCellNavigation: true,
+  editable: false,
+  enableAddRow: false,
+  enableCellNavigation: false,
   asyncEditorLoading: true,
-  forceFitColumns: false,
-  topPanelHeight: 25
+  forceFitColumns: true,
+  topPanelHeight: 25,
+  headerRowHeight: 0,
+  rowHeight: 50
 };
 
 var sortcol = "title";
