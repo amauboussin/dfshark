@@ -4,12 +4,14 @@ import mechanize, cookielib
 import urllib2, re, json, string, types
 import passwords
 
-from models import Contest
+
 
 from datetime import datetime
 
+
+from models import Contest
 # class Contest():
-#
+
 # 	def __init__(self, **kwargs):
 # 	    arg_vals = {
 # 	    	'site' : 'No site',
@@ -24,10 +26,10 @@ from datetime import datetime
 # 	    arg_vals.update(kwargs)
 # 	    for kw,arg in arg_vals.iteritems():
 # 	        setattr(self, kw, arg)
-#
+
 # 	def __repr__(self):
 # 		return str(self.__dict__)
-#
+
 # 	def __str__(self):
 # 		return self.__repr__()
 
@@ -178,7 +180,10 @@ class DraftKingsScraper(Scraper):
 
 
 	def scrape(self, scrape_id):
-		json_data = urllib2.urlopen('https://www.draftkings.com/contest/index').read()
+		opener = urllib2.build_opener()
+		opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+		response = opener.open('https://www.draftkings.com/contest/index')
+		json_data = response.read()
 		contests = json.loads(json_data)
 		guranteed = [c for c in contests if (c['attr'].has_key('IsGuaranteed') and c['attr']['IsGuaranteed'] == 'true') ]
 		for contest in guranteed[:-1]:
@@ -197,14 +202,6 @@ class DraftKingsScraper(Scraper):
 			}
 
 			self.contests.append(Contest(**contest_args))
-
-
-
-
-
-
-
-
 
 
 

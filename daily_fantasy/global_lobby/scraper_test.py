@@ -5,9 +5,6 @@ import os
 import sys
 
 
-
-
-
 def format_prize_amount(payout):
 	payout = string.replace(payout, ',', '')
 	payout = string.replace(payout, '$', '')
@@ -52,7 +49,7 @@ def fanduel():
 	contests = data['additions']
 
 	for contest in contests[:4]:
-			print contest
+			#print contest
 			contest_args = {
 				'site' : 'Fanduel',
 				'title': contest['title'],
@@ -65,6 +62,8 @@ def fanduel():
 			}
 
 			final.append(Contest(**contest_args))
+
+	print final
 
 
 

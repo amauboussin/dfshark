@@ -85,6 +85,7 @@ def fanduel():
 			}
 
 			final.append(Contest(**contest_args))
+	print final
 
 
 

@@ -13,6 +13,30 @@ body {
 }
 
 
+.gray {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    background-color: #f5f5f5;
+    /*padding-bottom: 30px;*/
+    /*padding-top: 30px;*/
+
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    border-radius: 4px;
+
+    box-shadow: 0px 1px 3px #666;
+    -webkit-box-shadow: 0px 1px 3px #666;
+    border-radius: 2px;
+
+    margin-bottom: 0px;
+
+    text-shadow:  0px 2px 3px white;
+}
+
+
+
 .options-panel {
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;

@@ -28,19 +28,19 @@ def print_contests(request):
     pool.join()
 
     contests = [contest for scraper in scrapers for contest in scraper.contests]
-
     return render(request, 'simple_home.html', {'contests' : contests})
 
 
 def refresh_database(request):
     id = Contest.objects.all().aggregate(Max('scrape_id'))['scrape_id__max'] + 1
-    scrapers = [DraftKingsScraper(), FTDScraper(), FanduelScraper()]
-    pool = ThreadPool(3)
-    pool.map(lambda s : s.scrape(id), scrapers )
-    pool.close()
-    pool.join()
+    scrapers = [DraftKingsScraper()]#, FTDScraper(), FanduelScraper()]
+    # pool = ThreadPool(1)
+    # pool.map(lambda s : s.scrape(id), scrapers )
+    # pool.close()
+    # pool.join()
 
     for s in scrapers:
+        s.scrape(id)
         s.update_db()
 
     return render(request, 'simple_message.html', {'message' : 'Refreshed database'})
